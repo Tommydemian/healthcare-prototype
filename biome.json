@@ -33,7 +33,8 @@
 			},
 			"style": {
 				"noNegationElse": "warn",
-				"useFragmentSyntax": "warn"
+				"useFragmentSyntax": "warn",
+				"noNonNullAssertion": "off"
 			},
 			"suspicious": {
 				"noArrayIndexKey": "warn",
