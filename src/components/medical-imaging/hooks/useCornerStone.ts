@@ -11,10 +11,10 @@ import {
 import { init as dicomImageLoaderInit } from "@cornerstonejs/dicom-image-loader";
 import type { IStackViewport } from "@cornerstonejs/core/types";
 
-type CornerStoreConfig = {
+type CornerStoneConfig = {
     viewportRef: React.RefObject<IStackViewport | null>;
 };
-export const useCornerStore = ({ viewportRef }: CornerStoreConfig) => {
+export const useCornerStore = ({ viewportRef }: CornerStoneConfig) => {
     const elementRef = useRef<HTMLDivElement>(null);
     const hasInitialized = useRef(false);
     useEffect(() => {

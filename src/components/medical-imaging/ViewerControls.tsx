@@ -2,13 +2,13 @@ import { ZoomOutIcon, Fullscreen } from "lucide-react";
 import { Button } from "../ui/Button";
 import type { FC } from "react";
 
-type ViewerControlssProps = {
+type ViewerControlsProps = {
     resetWindowLevel: () => void;
     zoomOut: () => void;
 };
 
-export const ViewerControls: FC<ViewerControlssProps> = ({ resetWindowLevel, zoomOut }) => {
-    const leyendList = ["Left Click: Adjust Contrast/ Window", "Righ Click: Zoom", "Scroll: Pan"];
+export const ViewerControls: FC<ViewerControlsProps> = ({ resetWindowLevel, zoomOut }) => {
+    const leyendList = ["Left Click: Adjust Contrast/ Window", "Right Click: Zoom", "Scroll: Pan"];
     return (
         <div className="mt-4 rounded-md border border-brder bg-white p-3 shadow-sm">
             <div className="grid grid-cols-[1fr] items-center justify-between md:flex">

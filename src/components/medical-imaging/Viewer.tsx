@@ -5,7 +5,7 @@ import { ViewerControls } from "./ViewerControls";
 import { ViewerFooter } from "./ViewerFooter";
 // Hooks
 import { useViewerTools } from "./hooks/useViewerTools";
-import { useCornerStore } from "./hooks/useCornerStore";
+import { useCornerStore } from "./hooks/useCornerStone";
 
 export const Viewer: React.FC = () => {
     const { resetWindowLevel, zoomOut, viewportRef } = useViewerTools();
