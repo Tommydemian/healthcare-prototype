@@ -1,28 +1,23 @@
 import type { FC } from "react";
-// Components
-import { ViewerHeader } from "./ViewerHeader";
 import { ViewerCanvas } from "./ViewerCanvas";
-import { ViewerControls } from "./ViewerControls";
 import { ViewerFooter } from "./ViewerFooter";
 // Hooks
-import { useViewerTools } from "./hooks/useViewerTools";
 import { useCornerStore } from "./hooks/useCornerStone";
+import type { StackViewport } from "@cornerstonejs/core";
 
 type ViewerProps = {
     activeImageId: string;
+    viewportRef: React.RefObject<StackViewport | null>;
 };
-export const Viewer: FC<ViewerProps> = ({ activeImageId }) => {
-    const { resetWindowLevel, zoomOut, viewportRef } = useViewerTools();
+export const Viewer: FC<ViewerProps> = ({ activeImageId, viewportRef }) => {
     const { elementRef } = useCornerStore({ viewportRef, imageId: activeImageId });
 
     return (
         <article className="overflow-clip rounded-lg bg-base shadow-md">
-            <ViewerHeader />
+            {/* <ViewerHeader /> */}
 
             <div className="p-4">
                 <ViewerCanvas elementRef={elementRef} />
-                <ViewerControls resetWindowLevel={resetWindowLevel} zoomOut={zoomOut} />
-
                 <ViewerFooter />
             </div>
         </article>
