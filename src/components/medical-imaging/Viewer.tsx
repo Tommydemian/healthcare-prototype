@@ -1,23 +1,18 @@
-import type { FC } from "react";
 import { ViewerCanvas } from "./ViewerCanvas";
 import { ViewerFooter } from "./ViewerFooter";
-// Hooks
-import { useCornerStore } from "./hooks/useCornerStone";
-import type { StackViewport } from "@cornerstonejs/core";
+// Types
+import type { FC } from "react";
 
 type ViewerProps = {
-    activeImageId: string;
-    viewportRef: React.RefObject<StackViewport | null>;
+    containerRef: React.RefObject<HTMLDivElement | null>;
 };
-export const Viewer: FC<ViewerProps> = ({ activeImageId, viewportRef }) => {
-    const { elementRef } = useCornerStore({ viewportRef, imageId: activeImageId });
-
+export const Viewer: FC<ViewerProps> = ({ containerRef }) => {
     return (
-        <article className="overflow-clip rounded-lg bg-base shadow-md">
+        <article className="relative overflow-clip rounded-lg bg-base shadow-md">
             {/* <ViewerHeader /> */}
 
-            <div className="p-4">
-                <ViewerCanvas elementRef={elementRef} />
+            <div className="">
+                <ViewerCanvas elementRef={containerRef} />
                 <ViewerFooter />
             </div>
         </article>

@@ -1,7 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 :root {
-	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
 	font-weight: 400;
 
@@ -16,11 +17,11 @@
 	--background-color-base: #f7fafc;
 	--background-color-primary: #1a365d;
 
-	--background-color-secondary: #319b96;
-	--background-color-secondary-hover: #3bbab4;
+	--background-color-secondary: #365681;
+	--background-color-secondary-hover: #426a9e;
 	--background-color-secondary-active: #2c8c87;
 
-	--color-fg-base: #4a5568;
+	--color-fg-base: #333a48;
 	--color-fg-inverted: #eff6ee;
 
 	--color-brder: #dbe0e6;
