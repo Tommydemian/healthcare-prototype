@@ -1,4 +1,4 @@
-import { useState } from "react";
+import type { FC } from "react";
 // Components
 import { ViewerHeader } from "./ViewerHeader";
 import { ViewerCanvas } from "./ViewerCanvas";
@@ -7,12 +7,11 @@ import { ViewerFooter } from "./ViewerFooter";
 // Hooks
 import { useViewerTools } from "./hooks/useViewerTools";
 import { useCornerStore } from "./hooks/useCornerStone";
-import { ThumbnailStack } from "./ThumbnailStack";
-// Data
-import { availableImages } from "../../data";
 
-export const Viewer: React.FC = () => {
-    const [activeImageId, setActiveImageId] = useState("image-1");
+type ViewerProps = {
+    activeImageId: string;
+};
+export const Viewer: FC<ViewerProps> = ({ activeImageId }) => {
     const { resetWindowLevel, zoomOut, viewportRef } = useViewerTools();
     const { elementRef } = useCornerStore({ viewportRef, imageId: activeImageId });
 
@@ -23,8 +22,6 @@ export const Viewer: React.FC = () => {
             <div className="p-4">
                 <ViewerCanvas elementRef={elementRef} />
                 <ViewerControls resetWindowLevel={resetWindowLevel} zoomOut={zoomOut} />
-
-                <ThumbnailStack thumbnails={availableImages} onSelect={setActiveImageId} activeId={activeImageId} />
 
                 <ViewerFooter />
             </div>

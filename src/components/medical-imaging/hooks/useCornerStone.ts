@@ -49,7 +49,7 @@ export const useCornerStore = ({ viewportRef, imageId = "image-1" }: CornerStone
             const imageMap: Record<string, string> = {
                 "image-1": "wadouri:http://localhost:5173/sample-2.dcm",
                 "image-2": "wadouri:http://localhost:5173/sample-55.dcm",
-                "image-3": "wadouri:http://localhost:5173/sample-56.dcm",
+                "image-3": "wadouri:http://localhost:5173/sample-205.dcm",
             };
 
             const imageIds = [imageMap[imageId] || imageMap["image-1"]];
@@ -93,14 +93,14 @@ export const useCornerStore = ({ viewportRef, imageId = "image-1" }: CornerStone
         setup();
     }, []);
 
-    // Add a new effect to update the image when imageId changes
+    // New change: imageId => !imageId
     useEffect(() => {
         if (!hasInitialized.current || !viewportRef.current) return;
 
         const imageMap: Record<string, string> = {
             "image-1": "wadouri:http://localhost:5173/sample-2.dcm",
             "image-2": "wadouri:http://localhost:5173/sample-55.dcm",
-            "image-3": "wadouri:http://localhost:5173/sample-56.dcm",
+            "image-3": "wadouri:http://localhost:5173/sample-205.dcm",
         };
 
         const imageUrl = imageMap[imageId] || imageMap["image-1"];
