@@ -12,7 +12,21 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-@layer theme {
+@theme {
+	--background-color-base: #f7fafc;
+	--background-color-primary: #1a365d;
+
+	--background-color-secondary: #319b96;
+	--background-color-secondary-hover: #3bbab4;
+	--background-color-secondary-active: #2c8c87;
+
+	--color-fg-base: #4a5568;
+	--color-fg-inverted: #eff6ee;
+
+	--color-brder: #dbe0e6;
+}
+
+@layer base {
 	*,
 	*::before,
 	*::after {
@@ -23,7 +37,25 @@
 
 	body {
 		min-height: 100vh;
-		background-color: #f7fafc;
-		color: #4a5568;
+		background-color: var(--background-color-base);
+		color: var(--color-fg-base);
+	}
+}
+
+@layer components {
+	.button {
+		@apply inline-flex justify-center text-sm md:text-base items-center text-fg-inverted rounded-sm transition-colors duration-300 ease-in-out cursor-pointer;
+		padding: 0.5em 1em;
+	}
+	.button.primary {
+		@apply bg-secondary;
+	}
+
+	.button.primary:hover {
+		@apply bg-secondary-hover;
+	}
+
+	.button.primary:active {
+		@apply bg-secondary-active;
 	}
 }

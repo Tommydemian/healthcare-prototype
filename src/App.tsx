@@ -1,11 +1,10 @@
 import { Container } from "./components/ui/Container";
-import { ImageViewer } from "./components/ImageViewer";
-// import VolumeExample from "./components/VolumeExample";
+import { Viewer } from "./components/medical-imaging/Viewer";
 function App() {
     return (
         <main className="my-4">
             <Container>
-                <ImageViewer />
+                <Viewer />
             </Container>
         </main>
     );
