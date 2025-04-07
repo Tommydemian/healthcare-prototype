@@ -14,8 +14,6 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 @theme {
-	--breakpoint-b-mobile: 21.25rem;
-
 	--color-primary: #365681;
 	--background-color-primary-hover: #426a9e;
 	--background-color-primary-active: #304d73;
@@ -40,6 +38,12 @@
 		min-height: 100vh;
 		background-color: #fff;
 		color: var(--color-fg-base);
+	}
+
+	@media screen and (min-width: 768px) {
+		body {
+			background-color: #575757e0;
+		}
 	}
 }
 

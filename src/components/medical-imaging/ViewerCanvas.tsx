@@ -1,4 +1,4 @@
-import { useEffect, type FC } from "react";
+import type { FC } from "react";
 
 type ViewerCanvasProps = {
     elementRef: React.RefObject<HTMLDivElement | null>;
@@ -6,9 +6,6 @@ type ViewerCanvasProps = {
 };
 
 export const ViewerCanvas: FC<ViewerCanvasProps> = ({ elementRef, isLoading }) => {
-    useEffect(() => {
-        console.log(isLoading, "loading");
-    }, [isLoading]);
     return (
         <div className="relative overflow-clip rounded-md border border-brder bg-[#0A0A0A]">
             <div

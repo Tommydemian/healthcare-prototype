@@ -40,7 +40,7 @@ export const useStack = ({ imageId }: StackConfig) => {
             await coreInit();
             await dicomImageLoaderInit();
 
-            const imageIds = ["wadouri:http://localhost:5173/sample-2.dcm"];
+            const imageIds = ["wadouri:/sample-2.dcm"];
 
             // Rendering Engine
             const renderingEngineId = "myRenderingEngine";
@@ -160,9 +160,9 @@ export const useStack = ({ imageId }: StackConfig) => {
         setIsLoading(true);
 
         const imageMap: Record<string, string> = {
-            "image-1": "wadouri:http://localhost:5173/sample-2.dcm",
-            "image-2": "wadouri:http://localhost:5173/sample-55.dcm",
-            "image-3": "wadouri:http://localhost:5173/sample-205.dcm",
+            "image-1": "wadouri:/sample-2.dcm",
+            "image-2": "wadouri:/sample-55.dcm",
+            "image-3": "wadouri:/sample-205.dcm",
         };
 
         const imageUrl = imageMap[imageId] || imageMap["image-1"];
