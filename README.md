@@ -50,7 +50,8 @@ A **proof-of-concept** medical imaging viewer built with **React** and **Corners
 - **React**: For UI components and state management.  
 - **CornerstoneJS**: Core library for DICOM rendering.  
 - **@cornerstonejs/tools**: Measurement tools, annotation state, etc.  
-- **TailwindCSS** for styling.
+- **TailwindCSS**: For styling.  
+- **Biome**: Handles linting and formatting.
 
 ---
 
