@@ -14,16 +14,16 @@ type ThumbnailStackProps = {
 
 export const ThumbnailStack: FC<ThumbnailStackProps> = ({ thumbnails, onSelect, activeId }) => {
     return (
-        <div className="flex flex-col items-center justify-between gap-2">
+        <div className="order-3 col-span-2 mt-2 hidden w-full flex-row items-center justify-between gap-2 md:flex lg:order-0 lg:col-span-1 lg:mt-0 lg:flex-col">
             {thumbnails.map((thumb) => (
                 <div
                     key={thumb.id}
                     onKeyDown={() => onSelect(thumb.id)}
                     onClick={() => onSelect(thumb.id)}
                     className={cn(
-                        "relative flex-shrink-0 cursor-pointer overflow-hidden rounded-md transition-all duration-150",
+                        "relative flex-shrink-1 cursor-pointer overflow-hidden rounded-md transition-all duration-150",
                         activeId === thumb.id
-                            ? "border border-white ring-2 ring-[#365681]"
+                            ? "border border-white ring-2 ring-[#527EB7]"
                             : "border border-brder hover:border-[#365681]/30",
                     )}
                     tabIndex={0}

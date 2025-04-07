@@ -26,7 +26,10 @@ export const ToolPanel: FC<ToolPanelProps> = ({ onSelectTool, resetAll }) => {
                     const isPermanentTool = t.label === "Pan" || t.label === "Zoom";
 
                     return (
-                        <div key={t.toolName} className="relative nth-[2]:mb-4 grid first:mb-4">
+                        <div
+                            key={t.toolName}
+                            className="relative nth-[2]:mb-4 grid nth-[2]:hidden first:mb-4 first:hidden lg:nth-[2]:block lg:first:block"
+                        >
                             <Button
                                 className={cn(
                                     isPermanentTool && "cursor-default bg-gray-200 text-fg-base",

@@ -12,7 +12,7 @@ type ViewerControlsProps = {
 
 export const ViewerControls: FC<ViewerControlsProps> = ({ setActiveTool, resetAll, viewportRef }) => {
     return (
-        <div className="grid p-2 shadow-sm xl:p-4">
+        <div className="grid p-2 md:shadow-sm lg:min-w-[12rem] xl:p-4">
             <PatientInfo />
             <ToolPanel onSelectTool={setActiveTool} resetAll={resetAll} />
             <WindowLevelControls viewportRef={viewportRef} />

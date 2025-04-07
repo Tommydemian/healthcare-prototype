@@ -13,7 +13,7 @@ export const PatientInfo = () => {
                     <span className="font-semibold">DOB:</span> 01/15/1965
                 </li>
                 <li className="flex items-center justify-between">
-                    <span className="font-semibold">Study Date:</span> 04/05/2025
+                    <span className="font-semibold">Scan Date:</span> 04/05/2025
                 </li>
             </ul>
         </div>

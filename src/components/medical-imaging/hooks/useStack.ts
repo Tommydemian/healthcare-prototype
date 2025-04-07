@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { init as coreInit, RenderingEngine, Enums } from "@cornerstonejs/core";
 import { init as dicomImageLoaderInit } from "@cornerstonejs/dicom-image-loader";
 import {
@@ -20,6 +20,8 @@ type StackConfig = {
 };
 
 export const useStack = ({ imageId }: StackConfig) => {
+    const [isLoading, setIsLoading] = useState(true);
+
     const containerRef = useRef<HTMLDivElement>(null);
     const hasInitialized = useRef(false);
     const toolGroupRef = useRef<ReturnType<typeof ToolGroupManager.createToolGroup> | null>(null);
@@ -71,8 +73,11 @@ export const useStack = ({ imageId }: StackConfig) => {
             try {
                 viewport.setStack(imageIds, 0);
                 viewport.render();
+
+                setIsLoading(false);
             } catch (error) {
                 console.error(error);
+                setIsLoading(false);
             }
 
             const toolGroupId = "ctToolGroup";
@@ -152,6 +157,8 @@ export const useStack = ({ imageId }: StackConfig) => {
     useEffect(() => {
         if (!hasInitialized.current || !viewportRef.current) return;
 
+        setIsLoading(true);
+
         const imageMap: Record<string, string> = {
             "image-1": "wadouri:http://localhost:5173/sample-2.dcm",
             "image-2": "wadouri:http://localhost:5173/sample-55.dcm",
@@ -163,11 +170,13 @@ export const useStack = ({ imageId }: StackConfig) => {
         // Update the current viewport with the new image
         viewportRef.current.setStack([imageUrl], 0);
         viewportRef.current.render();
+        setIsLoading(false);
     }, [imageId, viewportRef]);
 
     return {
         containerRef,
         setActiveTool,
+        isLoading,
         viewportRef,
         resetAll,
     };
