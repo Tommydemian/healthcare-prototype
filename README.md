@@ -15,7 +15,7 @@ A **proof-of-concept** medical imaging viewer built with **React** and **Corners
 
 ## Demo
 
-- **Live Demo**: [https://health-imaging-poc.netlify.app](#https://health-imaging-poc.netlify.app)  
+- **Live Demo**: [https://health-imaging-poc.netlify.app](https://health-imaging-poc.netlify.app)  
 
 ---
 
@@ -101,7 +101,7 @@ This emulates a real production environment for final testing.
 ## Deployment
 
 - Deployed with **Netlify**.
-- **Public URL**: [https://health-imaging-poc.netlify.app](#)  
+- **Public URL**: [https://health-imaging-poc.netlify.app](https://health-imaging-poc.netlify.app)  
 
 ---
 
