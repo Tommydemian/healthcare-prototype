@@ -1,18 +1,12 @@
-import type React from "react";
+import { useWindowLevelControls } from "./hooks/useWindowLevelControls";
+import type { FC } from "react";
+import type { StackViewport } from "@cornerstonejs/core";
 
 type WindowLevelControlsProps = {
-    windowWidth: number;
-    setWindowWidth: (val: number) => void;
-    windowCenter: number;
-    setWindowCenter: (val: number) => void;
+    viewportRef: React.RefObject<StackViewport | null>;
 };
-
-export const WindowLevelControls: React.FC<WindowLevelControlsProps> = ({
-    windowWidth,
-    setWindowWidth,
-    windowCenter,
-    setWindowCenter,
-}) => {
+export const WindowLevelControls: FC<WindowLevelControlsProps> = ({ viewportRef }) => {
+    const { setWindowCenter, setWindowWidth, windowCenter, windowWidth } = useWindowLevelControls({ viewportRef });
     const handleWidthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setWindowWidth(Number(e.target.value));
     };
@@ -40,13 +34,13 @@ export const WindowLevelControls: React.FC<WindowLevelControlsProps> = ({
                     step="1"
                     value={windowWidth}
                     onChange={handleWidthChange}
-                    className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-secondary-hover"
+                    className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-primary-hover"
                 />
             </div>
 
             <div className="mb-4">
                 <div className="mb-1 flex items-center justify-between">
-                    <label htmlFor="center" className="font-medium text-gray-600 text-sm">
+                    <label htmlFor="center" className="font-medium text-sm">
                         Center
                     </label>
                     <span className="rounded bg-gray-200 px-2 py-1 font-medium text-xs">{windowCenter}</span>
@@ -59,7 +53,7 @@ export const WindowLevelControls: React.FC<WindowLevelControlsProps> = ({
                     step="1"
                     value={windowCenter}
                     onChange={handleCenterChange}
-                    className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-secondary-hover"
+                    className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-primary-hover"
                 />
             </div>
         </div>

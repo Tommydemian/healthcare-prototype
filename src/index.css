@@ -14,14 +14,12 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 @theme {
-	--background-color-base: #f7fafc;
-	--background-color-primary: #1a365d;
-
-	--background-color-secondary: #365681;
-	--background-color-secondary-hover: #426a9e;
-	--background-color-secondary-active: #2c8c87;
+	--color-primary: #365681;
+	--background-color-primary-hover: #426a9e;
+	--background-color-primary-active: #304d73;
 
 	--color-fg-base: #333a48;
+	--color-fg-tertiary: #66738f;
 	--color-fg-inverted: #eff6ee;
 
 	--color-brder: #dbe0e6;
@@ -38,25 +36,36 @@
 
 	body {
 		min-height: 100vh;
-		background-color: var(--background-color-base);
+		background-color: #fff;
 		color: var(--color-fg-base);
 	}
 }
 
 @layer components {
 	.button {
-		@apply inline-flex justify-center text-sm md:text-base items-center text-fg-inverted rounded-sm transition-colors duration-300 ease-in-out cursor-pointer;
+		@apply inline-flex justify-center text-sm md:text-base items-center rounded-sm transition-colors duration-300 ease-in-out cursor-pointer;
 		padding: 0.5em 1em;
 	}
 	.button.primary {
-		@apply bg-secondary;
+		@apply bg-primary text-fg-inverted;
 	}
 
 	.button.primary:hover {
-		@apply bg-secondary-hover;
+		@apply bg-primary-hover;
 	}
 
 	.button.primary:active {
-		@apply bg-secondary-active;
+		@apply bg-primary-active;
 	}
+	.button.secondary {
+		@apply border border-primary text-primary bg-transparent;
+	}
+
+	.button.secondary:hover {
+		@apply hover:bg-primary/10;
+	}
+
+	/* .button.primary:active {
+		@apply bg-secondary-active;
+	} */
 }

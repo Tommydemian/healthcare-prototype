@@ -9,6 +9,7 @@ import {
     ProbeTool,
     LengthTool,
     addTool,
+    annotation,
 } from "@cornerstonejs/tools";
 
 import type { IStackViewport } from "@cornerstonejs/core/types";
@@ -20,24 +21,24 @@ type StackConfig = {
 
 export const useStack = ({ imageId }: StackConfig) => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const running = useRef(false);
+    const hasInitialized = useRef(false);
     const toolGroupRef = useRef<ReturnType<typeof ToolGroupManager.createToolGroup> | null>(null);
     const viewportRef = useRef<IStackViewport | null>(null);
 
     useEffect(() => {
         const setStack = async () => {
             // purpouse of this ref usage is to avoid 2ble effect execution due to strict-mode
-            if (running.current) {
+            if (hasInitialized.current) {
                 return;
             }
-            running.current = true;
+            hasInitialized.current = true;
 
             // init libraries
             await csToolsInit();
             await coreInit();
             await dicomImageLoaderInit();
 
-            const imageIds = ["wadouri:http://localhost:5173/sample-205.dcm"];
+            const imageIds = ["wadouri:http://localhost:5173/sample-2.dcm"];
 
             // Rendering Engine
             const renderingEngineId = "myRenderingEngine";
@@ -136,17 +137,23 @@ export const useStack = ({ imageId }: StackConfig) => {
         // 2) Reset Window/Level to default
         viewportRef.current.resetToDefaultProperties();
 
-        // 3) If you have measurements, optionally remove them from the ToolGroup
-        // For example:
-        // toolGroupRef.current?.toolState?.clear(...);
-        // or some Cornerstone Tools API to clear measurements. Depends on the version/approach.
+        const lengthAnnotations = annotation.state.getAnnotations(LengthTool.toolName, containerRef.current!);
 
-        // Re-render
+        lengthAnnotations.forEach((ann) => {
+            annotation.state.removeAnnotation(ann.annotationUID!);
+        });
+
+        const probeAnnotations = annotation.state.getAnnotations(ProbeTool.toolName, containerRef.current!);
+
+        probeAnnotations.forEach((ann) => {
+            annotation.state.removeAnnotation(ann.annotationUID!);
+        });
+
         viewportRef.current.render();
     }, []);
 
     useEffect(() => {
-        if (!running.current || !viewportRef.current) return;
+        if (!hasInitialized.current || !viewportRef.current) return;
 
         const imageMap: Record<string, string> = {
             "image-1": "wadouri:http://localhost:5173/sample-2.dcm",

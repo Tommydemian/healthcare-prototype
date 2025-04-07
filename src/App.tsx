@@ -1,38 +1,27 @@
-import { useCallback, useState } from "react";
+import { Viewer, ThumbnailStack, ViewerControls } from "./components/medical-imaging";
 import { Container } from "./components/ui/Container";
 
 import { useStack } from "./components/medical-imaging/hooks/useStack";
+import { useActiveImageId } from "./components/medical-imaging/hooks/useActiveImageId";
+
 import { availableImages } from "./data";
-import { ThumbnailStack } from "./components/medical-imaging/ThumbnailStack";
-import { Viewer } from "./components/medical-imaging";
-import { ViewerControls } from "./components/medical-imaging/ViewerControls";
-import { useWindowLevelControls } from "./components/medical-imaging/hooks/useWindowLevelControls";
 
 function App() {
-    const [activeImageId, setActiveImageId] = useState("image-1");
+    const { activeImageId, handleImageSelect } = useActiveImageId();
     const { containerRef, setActiveTool, viewportRef, resetAll } = useStack({ imageId: activeImageId });
 
-    const { setWindowCenter, setWindowWidth, windowCenter, windowWidth } = useWindowLevelControls({ viewportRef });
-
-    const handleSelect = useCallback((id: string) => {
-        setActiveImageId(id);
-    }, []);
-
     return (
-        <main className="my-4">
+        <main className="flex min-h-screen items-center justify-center">
             <Container>
-                <div className="grid max-h-[50rem] grid-cols-[150px_3fr_1fr] gap-x-4 rounded-md border border-brder bg-white p-4">
-                    <ThumbnailStack thumbnails={availableImages} onSelect={handleSelect} activeId={activeImageId} />
-                    <Viewer containerRef={containerRef} />
-                    <ViewerControls
-                        setActiveTool={setActiveTool}
-                        windowWidth={windowWidth}
-                        setWindowWidth={setWindowWidth}
-                        windowCenter={windowCenter}
-                        setWindowCenter={setWindowCenter}
-                        resetAll={resetAll}
+                <article className="grid max-h-[50rem] grid-cols-[150px_3fr_1fr] gap-x-4 rounded-md border border-brder bg-[#f5f7fa] p-4">
+                    <ThumbnailStack
+                        thumbnails={availableImages}
+                        onSelect={handleImageSelect}
+                        activeId={activeImageId}
                     />
-                </div>
+                    <Viewer containerRef={containerRef} />
+                    <ViewerControls setActiveTool={setActiveTool} resetAll={resetAll} viewportRef={viewportRef} />
+                </article>
             </Container>
         </main>
     );

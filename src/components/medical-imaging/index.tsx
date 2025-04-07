@@ -1,2 +1,5 @@
 import { Viewer } from "./Viewer";
-export { Viewer };
+import { ThumbnailStack } from "./ThumbnailStack";
+import { ViewerControls } from "./ViewerControls";
+
+export { Viewer, ThumbnailStack, ViewerControls };
