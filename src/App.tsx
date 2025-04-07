@@ -11,9 +11,9 @@ function App() {
     const { containerRef, setActiveTool, viewportRef, resetAll } = useStack({ imageId: activeImageId });
 
     return (
-        <main className="flex min-h-screen items-center justify-center">
+        <main className="flex min-h-screen items-center">
             <Container>
-                <article className="grid max-h-[50rem] grid-cols-[150px_3fr_1fr] gap-x-4 rounded-md border border-brder bg-[#f5f7fa] p-4">
+                <article className="grid max-h-[50rem] grid-cols-[150px_2fr_2fr] gap-x-4 rounded-md border border-brder bg-[#f5f7fa] p-4 lg:grid-cols-[150px_3fr_1fr]">
                     <ThumbnailStack
                         thumbnails={availableImages}
                         onSelect={handleImageSelect}

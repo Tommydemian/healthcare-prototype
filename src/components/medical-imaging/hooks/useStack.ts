@@ -110,15 +110,12 @@ export const useStack = ({ imageId }: StackConfig) => {
         setStack();
     }, []);
 
-    // A function to switch the currently active tool
     const setActiveTool = useCallback((toolName: string) => {
         if (!toolGroupRef.current) return;
 
-        // first set everything else to passive
         toolGroupRef.current.setToolPassive(LengthTool.toolName);
         toolGroupRef.current.setToolPassive(PanTool.toolName);
 
-        // then set the requested tool to active (on left click)
         toolGroupRef.current.setToolActive(toolName, {
             bindings: [
                 {

@@ -1,7 +1,7 @@
 import { Button } from "../ui/Button";
 import { TOOL_LIST } from "../../data/toolList";
 import { cn } from "../../utils/cn";
-import type { FC } from "react";
+import { useState, type FC } from "react";
 import type { Tool } from "../../types";
 
 type ToolPanelProps = {
@@ -10,8 +10,10 @@ type ToolPanelProps = {
 };
 
 export const ToolPanel: FC<ToolPanelProps> = ({ onSelectTool, resetAll }) => {
+    const [activeTool, setActiveTool] = useState<Tool["label"]>("Length");
     function handleSelect(toolName: Tool["label"]) {
         if (toolName === "Pan" || toolName === "Zoom") return;
+        setActiveTool(toolName);
         onSelectTool(toolName);
     }
 
@@ -26,11 +28,14 @@ export const ToolPanel: FC<ToolPanelProps> = ({ onSelectTool, resetAll }) => {
                     return (
                         <div key={t.toolName} className="relative nth-[2]:mb-4 grid first:mb-4">
                             <Button
-                                className={cn(isPermanentTool && "cursor-default bg-gray-200 text-fg-base")}
+                                className={cn(
+                                    isPermanentTool && "cursor-default bg-gray-200 text-fg-base",
+                                    t.label === activeTool && "bg-[#2a4368] ring-2 ring-white ring-opacity-70",
+                                )}
                                 onClick={() => handleSelect(t.label)}
                             >
                                 <Icon size={18} className="mr-1" />
-                                {t.label}
+                                <span className="hidden xl:block">{t.label}</span>
                             </Button>
                             {isPermanentTool && (
                                 <div className="-bottom-4 absolute right-0 left-0 text-center text-fg-tertiary text-xs">
